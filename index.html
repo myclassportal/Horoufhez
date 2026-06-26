@@ -287,7 +287,7 @@
       </div>
     </div>
   </div>
-  <div id="portal-error-section" style="display:none; text-align:center; padding:20px; max-width: 450px; margin: 12px auto; background: white; border-radius: 12px; box-shadow:0 6px 18px rgba(0,0,0,0.12);">
+  <div id="portal-error-section" style="display:none; text-align:center; padding:20px; max-width: 450px; margin: 20px auto; background: white; border-radius: 12px; box-shadow:0 6px 18px rgba(0,0,0,0.12);">
       <div style="font-size:2.5rem; margin-bottom:10px;">⚠️</div>
       <h3 id="portal-error-title" style="color:#d32f2f; margin-bottom:8px; font-weight:bold; font-size:15pt;">خطا در اتصال به پرتال کلاس</h3>
       <p id="portal-error-desc" style="color:#555; font-size:12pt; margin-bottom:15px; line-height:1.6;">جهت بارگذاری مشخصات و تکالیفت، اتصال به اینترنت الزامی است. لطفا شبکه‌ات را بررسی کن و مجدداً تلاش کن.</p>
@@ -504,6 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(STORAGE, JSON.stringify(gameState));
     }
 
+    // gameState_adad_be_horoof_hezar_v2
     function saveGameState() {
         localStorage.setItem(GAME_STATE_STORAGE, JSON.stringify({
             stages: gameState.stages,
@@ -699,7 +700,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initStages(reset = false){
-      if (!reset && loadGameState()) {
+      if (!reset && checkSavedUnfinishedState()) {
+        loadState();
         return;
       }
       
@@ -1036,11 +1038,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('register-btn').onclick = () => {
         gameState.currentScreen = 'game';
-        gameState.stages = generateStagesForGame();
-        gameState.stage = 0;
-        gameState.score = 0;
-        gameState.correctWithHelpPending = false;
-        saveGameState();
+        const activeState = checkSavedUnfinishedState();
+        if (activeState) {
+            loadState();
+        } else {
+            initStages(true);
+        }
         saveState();
         showScreen('screen-game');
         loadStage();
@@ -1048,11 +1051,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('play-again-btn').onclick = () => {
         gameState.currentScreen = 'game';
-        gameState.stages = generateStagesForGame();
-        gameState.stage = 0;
-        gameState.score = 0;
-        gameState.correctWithHelpPending = false;
-        saveGameState();
+        initStages(true);
         saveState();
         showScreen('screen-game');
         loadStage();
