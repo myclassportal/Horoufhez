@@ -350,7 +350,7 @@
   <div class="container">
     <h3 style="color:#ff69b4; font-size:18pt; margin-bottom:15px;">تبریک! تمرین تمام شد 🎉</h3>
     
-    <div class="report-details" id="reportDetails"></div>
+    <div class="report-details" id="report-content"></div>
     
     <div id="portal-submit-badge" style="display:none; background:#ffe4e1; border:1px solid #ff69b4; color:#ff1493; padding:15px; border-radius:12px; margin-bottom:12px; font-weight:bold; font-size:12.5pt; line-height:1.6; text-align:right;"></div>
 
@@ -504,7 +504,6 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(STORAGE, JSON.stringify(gameState));
     }
 
-    // gameState_adad_be_horoof_hezar_v2
     function saveGameState() {
         localStorage.setItem(GAME_STATE_STORAGE, JSON.stringify({
             stages: gameState.stages,
