@@ -25,17 +25,14 @@
       font-family: 'Vazirmatn', sans-serif;
       background: #d4f1f4;
       color: #222;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      padding: 16px;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+      text-align: center;
     }
     .hidden { display: none !important; }
     .screen {
       width: 100%;
-      height: 100%;
-      overflow-y: auto;
-      padding-bottom: 250px;
       display: none !important;
       flex-direction: column;
       align-items: center;
@@ -44,26 +41,15 @@
       display: flex !important;
     }
 
-    #screen-register {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7); z-index: 300; justify-content: center; align-items: center;
-      overflow-y: auto;
+    #welcome {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      margin-bottom: 12px;
+      width: 100%;
+      max-width: 850px;
     }
-    #screen-register.active {
-      display: flex !important;
-      flex-direction: column;
-    }
-    #register-box {
-      background: #fff; border: 4px solid #ff69b4; border-radius: 24px; padding: 25px 20px;
-      max-width: 95%; width: 420px; max-height: 90vh; overflow-y: auto; text-align: center; box-shadow: 0 12px 36px rgba(0,0,0,0.3);
-    }
-    .welcome-badge {
-      background: #ffe4e1; color: #ff1493; font-weight: bold; font-size: 11pt;
-      padding: 5px 12px; border-radius: 20px; display: inline-block; margin-bottom: 12px;
-      border: 1px dashed #ff69b4;
-    }
-    #register-box h2 { color: #ff1493; margin-bottom: 15px; font-size: 18pt; font-weight: 700; }
-
     #keyboardInputContainer {
       margin: 15px auto;
       width: 100%;
@@ -134,23 +120,38 @@
       color: #c92a2a;
       font-size: 11pt;
     }
-    .stats-bar {
-      width: 100%; height: 50px; background: rgba(255, 255, 255, 0.95);
-      border-bottom: 4px solid #ff69b4; color: #333; display: flex;
-      justify-content: space-between; align-items: center; padding: 0 15px;
-      position: fixed; top: 0; left: 0; z-index: 900;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1); backdrop-filter: blur(8px);
+    .btn-start {
+      background: #32cd32;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 20px;
+      font-size: 15pt;
+      cursor: pointer;
+      font-family: 'Vazirmatn', sans-serif;
+      font-weight: bold;
     }
-    .stats-bar span { font-size: 14pt; }
+    .stats-bar {
+      background: #fff;
+      padding: 8px 12px;
+      border-radius: 12px;
+      margin: 0 auto 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      font-size: 14pt;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      max-width: 850px;
+    }
     .container {
       max-width: 850px;
-      width: 90%;
-      margin: 90px auto 20px;
+      width: 100%;
+      margin: 0 auto 60px;
       background: #fff;
       border-radius: 14px;
       padding: 14px;
       box-shadow: 0 8px 26px rgba(0,0,0,0.10);
-      text-align: center;
     }
     h1 { color: #ff69b4; margin: 8px 0; font-size: 20pt; }
     #school { color: #4b0082; margin-bottom: 6px; font-size: 14pt; }
@@ -192,18 +193,39 @@
     #submit { display: none; margin: 8px auto; padding: 10px 18px; border-radius: 10px; background: #32cd32; color: #fff; border: none; font-size: 16pt; cursor: pointer; font-family: inherit; font-weight: bold; }
     #feedback { min-height: 28px; margin: 8px 0; font-size: 15pt; font-weight: 700; color: #d32f2f; }
     
-    .btn {
-      font-size: 16pt; padding: 12px 25px; margin: 8px;
-      border: none; border-radius: 10px; cursor: pointer; transition: 0.3s;
-      font-family: inherit; font-weight: bold;
+    .report-details {
+      text-align: right;
+      direction: rtl;
+      font-size: 14pt;
+      line-height: 1.8;
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #e9ecef;
     }
-    .btn:active { transform: translateY(2px); box-shadow: none; }
-
+    .report-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed #dee2e6;
+      padding: 8px 0;
+    }
+    .report-row:last-child {
+      border-bottom: none;
+    }
+    .report-label {
+      font-weight: bold;
+      color: #495057;
+    }
+    .report-value {
+      color: #212529;
+    }
     .flower { position: fixed; font-size: 26px; pointer-events: none; animation: fall linear forwards; z-index: 50; }
     @keyframes fall { 0% { transform: translateY(-100px) rotate(0deg); opacity: 1; } 100% { transform: translateY(120vh) rotate(360deg); opacity: 0; } }
     
     @media (max-width: 480px) {
-      .container { padding: 8px; margin: 90px auto 20px; }
+      body { padding: 6px; }
+      .container { padding: 8px; margin: 0 auto 40px; }
       .virtual-keyboard { padding: 6px; gap: 4px; }
       .keyboard-row { gap: 2px; }
       .key { height: 46px; font-size: 11.5pt; }
@@ -211,17 +233,21 @@
       .piece { font-size: 13pt; padding: 8px 10px; }
       #submit { font-size: 15pt; padding: 10px 14px; }
     }
+    @media (min-width: 481px) and (max-width: 768px) {
+      body { padding: 10px; }
+      .container { padding: 12px; }
+    }
   </style>
 </head>
 <body>
 
-<div id="Screen-Loading" style="display:none; background:#faf8ff; border-radius:12px; padding:35px; box-shadow:0 6px 18px rgba(0,0,0,0.12); position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+<div id="Screen-Loading" style="display:none; background:#d4f1f4; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px;">
     <div style="font-size: 3.5rem; margin-bottom: 15px;">🐰</div>
-    <h1 style="color:#ff69b4; font-size:24pt; margin-bottom:30px; font-weight: bold;">عدد به حروف _ هزار</h1>
-    <div style="background:#e0e0e0; border-radius:12px; height:18px; width:80%; overflow:hidden; margin-bottom:18px; border:2px solid #ff69b4; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
+    <h1 style="color:#ff69b4; font-size:24pt; margin-bottom:30px; font-weight: bold;">بازی عدد به حروف - هزار</h1>
+    <div style="background:#e0e0e0; border-radius:12px; height:18px; width:80%; max-width:400px; overflow:hidden; margin-bottom:18px; border:2px solid #ff69b4; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">
         <div id="portal-loading-bar" style="background: linear-gradient(90deg, #ff007f, #aa00ff, #00b0ff); width:0%; height:100%; transition:width 0.3s ease; box-shadow: 0 0 10px rgba(170,0,255,0.5);"></div>
     </div>
-    <p id="portal-loading-text" style="font-size:13pt; color:#ff1493; font-weight:bold;"></p>
+    <p id="portal-loading-text" style="font-size:13pt; color:#4b0082; font-weight:bold;"></p>
 </div>
 
 <div id="statsBar" class="stats-bar" style="display: none;">
@@ -231,42 +257,46 @@
 </div>
 
 <div id="screen-register" class="screen">
-  <div id="register-box">
-    <div class="welcome-badge">🥕 خوش‌آمدی قهرمان باهوشم! 🥕</div>
-    <h2 id="portal-school-title">دبستان معاد خرگوشی</h2>
-    <div id="portal-welcome-section">
-      <span id="portal-student-welcome" style="font-size: 15pt; font-weight: bold; color: #ff1493; display: block; margin-bottom: 15px;">سلام دانش‌آموز زرنگم! 🌟</span>
-      <div style="display: flex; flex-direction: column; gap: 12px; background: rgba(255, 255, 255, 0.7); border-radius: 14px; padding: 15px; border: 1px solid rgba(255, 105, 180, 0.3); text-align: right; margin-bottom: 20px;">
-          <div style="display:flex; justify-content:space-between; align-items: center; font-size:12.5pt; font-weight: bold; color: #333;">
-              <span>👤 نام و نشانت:</span>
-              <span id="portal-student-name" style="color: #ff1493;">---</span>
+  <div id="welcome">
+    <div style="max-width:760px;margin:0 auto;text-align:right;direction:rtl;">
+      <div style="text-align:center;margin-bottom:12px;font-size:16pt;font-weight:bold;color:#ff69b4;" id="portal-school-title">دبستان معاد خرگوشی</div>
+      <div id="portal-welcome-section">
+        <div style="text-align:center;margin-bottom:15px;font-size:15pt;font-weight:bold;color:#4b0082;" id="portal-student-welcome">سلام دانش‌آموز زرنگم! 🌟</div>
+        
+        <div style="display: flex; flex-direction: column; gap: 10px; background: #f0f8ff; border-radius: 12px; padding: 15px; border: 1px dashed #87ceeb; margin-bottom: 20px; font-size:13pt;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span>👤 نام و نشانت:</span>
+            <span id="portal-student-name" style="font-weight:bold; color:#ff69b4;">---</span>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items: center; font-size:12pt; color: #333;">
-              <span>🎮 تعداد بازی‌های قبلی:</span>
-              <span id="portal-prev-plays" style="font-weight:bold; color:#1565c0;">۰</span>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span>🎮 تعداد بازی‌های قبلی:</span>
+            <span id="portal-prev-plays" style="font-weight:bold; color:#006400;">۰</span>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items: center; font-size:12pt; color: #333;">
-              <span>⭐ ستاره‌های ثبت‌شده:</span>
-              <span id="portal-prev-stars" style="font-weight:bold; color:#f9a825;">۰ ⭐</span>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span>⭐ ستاره‌های ثبت‌شده:</span>
+            <span id="portal-prev-stars" style="font-weight:bold; color:#ffa500;">۰ ⭐</span>
           </div>
-          <div style="display:flex; justify-content:space-between; align-items: center; font-size:12.5pt; font-weight:bold; color:#2e7d32; border-top:1px dashed #ff69b4; padding-top:10px; margin-top:5px;">
-              <span>🎯 ستاره مورد نیاز تکلیف:</span>
-              <span id="portal-req-stars" style="background:#e8f5e9; padding:2px 8px; border-radius:10px;">۰ ⭐</span>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-weight:bold; color:#2e7d32; border-top:1px dashed #bce3e8; padding-top:8px; margin-top:5px;">
+            <span>🎯 ستاره مورد نیاز تکلیف:</span>
+            <span id="portal-req-stars">۰ ⭐</span>
           </div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:10px;">
+        <button id="register-btn" class="btn-start">شروع بازی تکلیف 🎮</button>
       </div>
     </div>
-    <button id="register-btn" class="btn" style="width: 100%; background: #32cd32; color: white; box-shadow: 0 4px 0 #228b22;">شروع بازی تکلیف 🎮</button>
   </div>
-  <div id="portal-error-section" style="display:none; text-align:center; padding:15px; max-width: 400px; margin: 20px auto; background: white; border-radius: 20px; border: 3px solid #ff69b4;">
+  <div id="portal-error-section" style="display:none; text-align:center; padding:20px; max-width: 450px; margin: 12px auto; background: white; border-radius: 12px; box-shadow:0 6px 18px rgba(0,0,0,0.12);">
       <div style="font-size:2.5rem; margin-bottom:10px;">⚠️</div>
-      <h3 id="portal-error-title" style="color:#d32f2f; margin-bottom:8px;">خطا در اتصال به پرتال کلاس</h3>
+      <h3 id="portal-error-title" style="color:#d32f2f; margin-bottom:8px; font-weight:bold; font-size:15pt;">خطا در اتصال به پرتال کلاس</h3>
       <p id="portal-error-desc" style="color:#555; font-size:12pt; margin-bottom:15px; line-height:1.6;">جهت بارگذاری مشخصات و تکالیفت، اتصال به اینترنت الزامی است. لطفا شبکه‌ات را بررسی کن و مجدداً تلاش کن.</p>
-      <button id="portal-retry-auth-btn" class="btn" style="background:#1e90ff; color:white; border:none; padding:10px 25px; border-radius:10px; font-weight:bold; cursor:pointer; box-shadow: 0 4px 0 #1565c0;" onclick="retryAuthentication()">🔄 تلاش مجدد برای اتصال</button>
+      <button id="portal-retry-auth-btn" class="btn-start" style="background:#1e90ff;" onclick="retryAuthentication()">🔄 تلاش مجدد برای اتصال</button>
   </div>
 </div>
 
 <div id="screen-assistant" class="screen">
-  <div class="container" style="margin-top: 90px; max-width: 450px;">
+  <div class="container" style="max-width: 450px;">
     <h2 style="color: #ff1493; margin-bottom: 20px;">🌟 دستیار ثبت ستاره 🌟</h2>
     <div style="background: #ffe4e1; border: 2px dashed #ff69b4; border-radius: 15px; padding: 20px; margin-bottom: 25px; line-height: 1.8; text-align: justify; direction: rtl;">
         <span style="font-size: 14pt; font-weight: bold; color: #ff1493; display: block; margin-bottom: 10px;" id="ast-welcome">سلام قهرمان!</span>
@@ -275,12 +305,12 @@
             اصلاً نگران نباش! نیازی به بازی دوباره نیست. دکمه زیر را بزن تا ستاره‌ات ثبت بشه و کارنامه‌ات رو ببینی. 😊
         </p>
     </div>
-    <div style="display: flex; flex-direction: column; gap: 10px; background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 15px; margin-bottom: 25px; text-align: right; direction: rtl;">
+    <div style="display: flex; flex-direction: column; gap: 10px; background: #f0f8ff; border: 1px solid #bce3e8; border-radius: 10px; padding: 15px; margin-bottom: 25px; text-align: right; direction: rtl; font-size:12pt;">
         <div style="display:flex; justify-content:space-between; align-items:center;"><span>👤 نام و نشانت:</span><span id="ast-name" style="font-weight:bold; color:#ff1493;">---</span></div>
         <div style="display:flex; justify-content:space-between; align-items:center;"><span>⭐ ستاره‌های ثبت‌شده قبلی:</span><span id="ast-stars" style="font-weight:bold; color:#ffa500;">۰ ⭐</span></div>
         <div style="display:flex; justify-content:space-between; align-items:center;"><span>🎯 ستاره هدف تکلیف:</span><span id="ast-req-stars" style="font-weight:bold; color:#006400;">۰ ⭐</span></div>
     </div>
-    <button class="btn btn-success" style="width: 100%; padding: 15px; font-size: 13pt; background: #32cd32; color: white; box-shadow: 0 4px 0 #228b22;" onclick="submitAssistantStar()">🌟 ثبت ستاره‌ی طلایی من و دریافت کارنامه</button>
+    <button class="btn-start" style="width: 100%; height: 50px; font-size:13pt;" onclick="submitAssistantStar()">🌟 ثبت ستاره‌ی طلایی من و دریافت کارنامه</button>
   </div>
 </div>
 
@@ -307,18 +337,20 @@
 
 <div id="portal-submitting-screen" class="screen">
   <div class="container" style="max-width: 450px;">
-    <h3 id="portal-progress-title" style="color:#ff1493; margin-bottom:15px; font-weight:bold;">⏳ در حال ارسال نتایج به دیتابیس کلاس...</h3>
+    <h3 id="portal-progress-title" style="color:#ff69b4; margin-bottom:15px; font-weight:bold; font-size:16pt;">⏳ در حال ارسال نتایج به دیتابیس کلاس...</h3>
     <div style="background:#eee; border-radius:10px; height:20px; width:100%; overflow:hidden; margin-bottom:15px; border:1px solid #ccc;">
         <div id="portal-progress-bar" style="background:linear-gradient(90deg, #ff007f, #aa00ff, #00b0ff); width:0%; height:100%; transition:width 0.2s;"></div>
     </div>
     <p id="portal-submit-status-text" style="font-size:12pt; color:#555; font-weight:bold; line-height:1.6; direction:rtl;"></p>
-    <button id="portal-retry-submit-btn" class="btn" style="display:none; margin:15px auto 0; background:#d32f2f; color:white; box-shadow: 0 4px 0 #900;" onclick="retrySubmission()">🔄 تلاش مجدد برای ارسال</button>
+    <button id="portal-retry-submit-btn" class="btn-start" style="display:none; margin:15px auto 0; background:#d32f2f;" onclick="retrySubmission()">🔄 تلاش مجدد برای ارسال</button>
   </div>
 </div>
 
 <div id="screen-report" class="screen">
   <div class="container">
-    <div id="report-content"></div>
+    <h3 style="color:#ff69b4; font-size:18pt; margin-bottom:15px;">تبریک! تمرین تمام شد 🎉</h3>
+    
+    <div class="report-details" id="reportDetails"></div>
     
     <div id="portal-submit-badge" style="display:none; background:#ffe4e1; border:1px solid #ff69b4; color:#ff1493; padding:15px; border-radius:12px; margin-bottom:12px; font-weight:bold; font-size:12.5pt; line-height:1.6; text-align:right;"></div>
 
@@ -328,8 +360,8 @@
 
     <div id="portal-back-instruction" style="display:none; width: 100%;"></div>
 
-    <div style="margin-top:20px; display:flex; flex-direction: column; gap:12px; align-items:center;">
-      <button id="play-again-btn" class="btn" style="background:#32cd32; color:white; width: 100%; box-shadow: 0 4px 0 #228b22;">تمرین دوباره 🎮</button>
+    <div style="text-align:center; display: flex; flex-direction: column; gap: 10px; align-items: center; width: 100%;">
+      <button id="play-again-btn" style="width: 80%; background:#32cd32; color:#fff; border:none; padding:12px; border-radius:10px; font-size:15pt; cursor:pointer; font-family: 'Vazirmatn', sans-serif; font-weight:bold; box-shadow: 0 4px 0 #228b22;">تأیید و بازی مجدد 🎮</button>
     </div>
   </div>
 </div>
@@ -481,7 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadState() {
-        const saved = document.getElementById('Screen-Game') ? localStorage.getItem(GAME_STATE_STORAGE) : null;
+        const saved = localStorage.getItem(GAME_STATE_STORAGE);
         if (saved) {
             try {
                 const d = JSON.parse(saved);
@@ -667,8 +699,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initStages(reset = false){
-      if (!reset && checkSavedUnfinishedState()) {
-        loadState();
+      if (!reset && loadGameState()) {
         return;
       }
       
@@ -1005,12 +1036,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('register-btn').onclick = () => {
         gameState.currentScreen = 'game';
-        const activeState = checkSavedUnfinishedState();
-        if (activeState) {
-            loadState();
-        } else {
-            initStages(true);
-        }
+        gameState.stages = generateStagesForGame();
+        gameState.stage = 0;
+        gameState.score = 0;
+        gameState.correctWithHelpPending = false;
+        saveGameState();
         saveState();
         showScreen('screen-game');
         loadStage();
@@ -1018,7 +1048,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('play-again-btn').onclick = () => {
         gameState.currentScreen = 'game';
-        initStages(true);
+        gameState.stages = generateStagesForGame();
+        gameState.stage = 0;
+        gameState.score = 0;
+        gameState.correctWithHelpPending = false;
+        saveGameState();
         saveState();
         showScreen('screen-game');
         loadStage();
